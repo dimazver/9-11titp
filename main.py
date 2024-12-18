@@ -15,6 +15,27 @@ def count_subarrays_with_sum(arr, target_sum):
 
     return count
 
+
+def add_large_numbers(arr1, arr2):
+    """Функция для сложения двух больших чисел, представленных в виде массивов цифр."""
+    carry = 0
+    result = []
+    max_len = max(len(arr1), len(arr2))
+
+    arr1 = [0] * (max_len - len(arr1)) + arr1
+    arr2 = [0] * (max_len - len(arr2)) + arr2
+
+    for i in range(max_len - 1, -1, -1):
+        total = arr1[i] + arr2[i] + carry
+        result.append(total % 10)
+        carry = total // 10
+
+    if carry:
+        result.append(carry)
+
+    return result[::-1]
+
+
 def subtract_large_numbers(arr1, arr2):
     """Функция для вычитания двух больших чисел, представленных в виде массивов цифр."""
     borrow = 0
@@ -41,5 +62,5 @@ def subtract_large_numbers(arr1, arr2):
 arr1 = [1, 2, 3, 4, 5]
 arr2 = [9, 8, 7, 6, 5]
 
-subtract_result = subtract_large_numbers(arr1, arr2)
-print(f"Разность: {subtract_result}")
+sum_result = add_large_numbers(arr1, arr2)
+print(f"Сумма: {sum_result}")
