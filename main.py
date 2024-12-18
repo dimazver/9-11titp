@@ -2,7 +2,7 @@ def count_subarrays_with_sum(arr, target_sum):
     """Функция для подсчета количества подмассивов, сумма которых равна заданному числу."""
     count = 0
     current_sum = 0
-    prefix_sums = {0: 1}  # Инициализируем словарь для хранения префиксных сумм
+    prefix_sums = {0: 1}
 
     for num in arr:
         current_sum += num
@@ -15,9 +15,31 @@ def count_subarrays_with_sum(arr, target_sum):
 
     return count
 
-# Пример использования
-arr = [1, 2, 3, 4, 5, 6]
-target_sum = 6
+def subtract_large_numbers(arr1, arr2):
+    """Функция для вычитания двух больших чисел, представленных в виде массивов цифр."""
+    borrow = 0
+    result = []
+    max_len = max(len(arr1), len(arr2))
 
-result = count_subarrays_with_sum(arr, target_sum)
-print(f"Количество подмассивов, сумма которых равна {target_sum}: {result}")
+    arr1 = [0] * (max_len - len(arr1)) + arr1
+    arr2 = [0] * (max_len - len(arr2)) + arr2
+
+    for i in range(max_len - 1, -1, -1):
+        diff = arr1[i] - arr2[i] - borrow
+        if diff < 0:
+            diff += 10
+            borrow = 1
+        else:
+            borrow = 0
+        result.append(diff)
+
+    while len(result) > 1 and result[-1] == 0:
+        result.pop()
+
+    return result[::-1]
+
+arr1 = [1, 2, 3, 4, 5]
+arr2 = [9, 8, 7, 6, 5]
+
+subtract_result = subtract_large_numbers(arr1, arr2)
+print(f"Разность: {subtract_result}")
