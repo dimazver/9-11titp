@@ -94,5 +94,19 @@ def gen_arr(lenght):
         a.append(random.randint(0, 9))
     return a
 
+def gen_or_get_arr():
+    print("Желаете ввести массив в ручную? y/n \n В случае отказа массив будет сгенерирован случайно")
+    ch = input()
+    if ch == 'y':
+        print("Введите длинну массива")
+        lenght = int(input())
+        return get_arr(lenght)
+    elif ch == 'n':
+        print("Введите длинну массива")
+        lenght = int(input())
+        return gen_arr(lenght)
+    else:
+        print("Неверные данные")
 
-print(gen_arr(3))
+
+print(gen_or_get_arr())
