@@ -59,8 +59,23 @@ def subtract_large_numbers(arr1, arr2):
 
     return result[::-1]
 
-arr1 = [1, 2, 3, 4, 5]
-arr2 = [9, 8, 7, 6, 5]
 
-sum_result = add_large_numbers(arr1, arr2)
-print(f"Сумма: {sum_result}")
+def is_reversed(n):
+    return int(str(n)[::-1])
+
+
+def count_common_numbers(arr1, arr2):
+    set1 = set(arr1)
+    set2 = set(arr2)
+
+    reversed_set1 = set(is_reversed(n) for n in arr1)
+    reversed_set2 = set(is_reversed(n) for n in arr2)
+
+    combined_set1 = set1.union(reversed_set1)
+    combined_set2 = set2.union(reversed_set2)
+
+    common_elements = combined_set1.intersection(combined_set2)
+
+    return len(common_elements)
+
+
