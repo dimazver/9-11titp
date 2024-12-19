@@ -1,3 +1,5 @@
+import random
+
 def count_subarrays_with_sum(arr, target_sum):
     """Функция для подсчета количества подмассивов, сумма которых равна заданному числу."""
     count = 0
@@ -85,4 +87,12 @@ def get_arr(lenght):
         a.append(int(input()))
     return a
 
-print(get_arr(3))
+
+def gen_arr(lenght):
+    a = []
+    for i in range(lenght):
+        a.append(random.randint(0, 9))
+    return a
+
+
+print(gen_arr(3))
