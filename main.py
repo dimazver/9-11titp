@@ -79,3 +79,10 @@ def count_common_numbers(arr1, arr2):
     return len(common_elements)
 
 
+def get_arr(lenght):
+    a = []
+    for i in range(lenght):
+        a.append(int(input()))
+    return a
+
+print(get_arr(3))
